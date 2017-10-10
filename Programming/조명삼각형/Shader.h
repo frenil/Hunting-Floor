@@ -94,7 +94,8 @@ public:
 	CObjectsShader();
 	virtual ~CObjectsShader();
 
-	virtual void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
+	virtual void BuildTriObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
+	virtual void BuildSphereObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void AnimateObjects(float fTimeElapsed);
 	virtual void ReleaseObjects();
 
