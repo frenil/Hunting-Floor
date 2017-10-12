@@ -3,7 +3,8 @@
 //-----------------------------------------------------------------------------
 
 #pragma once
-
+#include <fbxsdk.h>
+#include "FbxLoad.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 class CVertex
@@ -155,4 +156,11 @@ class CSphereMeshIlluminated : public CMeshIlluminated
 public:
 	CSphereMeshIlluminated(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, float fRadius = 2.0f, UINT nSlices = 20, UINT nStacks = 20);
 	virtual ~CSphereMeshIlluminated();
+};
+class CFBXMeshIlluminated : public CMeshIlluminated
+{
+public:
+	CFBXMeshIlluminated(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, UINT nSlices = 20, UINT nStacks = 20);
+	virtual ~CFBXMeshIlluminated();
+
 };

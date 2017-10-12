@@ -600,3 +600,42 @@ CTriangleMeshIlluminated::CTriangleMeshIlluminated(ID3D12Device * pd3dDevice, ID
 CTriangleMeshIlluminated::~CTriangleMeshIlluminated()
 {
 }
+
+CFBXMeshIlluminated::CFBXMeshIlluminated(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, UINT nSlices, UINT nStacks) : CMeshIlluminated(pd3dDevice, pd3dCommandList)
+{
+	FbxLoad fbx;
+	vector<XMFLOAT3> ver;
+
+	fbx.LoadFBX(&ver);
+
+	m_nVertices = ver.size()*3;
+	m_nStride = sizeof(CDiffusedVertex);
+	m_nOffset = 0;
+	m_nSlot = 0;
+	m_d3dPrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	int n = ver.size() * 3;
+	CDiffusedVertex *pVertices;
+	pVertices = (CDiffusedVertex *)malloc(n * sizeof(CDiffusedVertex));
+	int i = 0;
+	for (auto it = ver.begin(); it != ver.end(); ++it) {
+
+	pVertices[i++] = CDiffusedVertex(XMFLOAT3(it->x, it->y, it->z), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)); //XMFLOAT4(Colors::Red)
+	
+	}
+
+																									 //#define _WITH_UPLOAD_BUFFER
+
+#ifdef _WITH_UPLOAD_BUFFER
+	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
+#else
+	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pd3dVertexUploadBuffer);
+#endif
+
+	m_d3dVertexBufferView.BufferLocation = m_pd3dVertexBuffer->GetGPUVirtualAddress();
+	m_d3dVertexBufferView.StrideInBytes = m_nStride;
+	m_d3dVertexBufferView.SizeInBytes = m_nStride * m_nVertices;
+}
+
+CFBXMeshIlluminated::~CFBXMeshIlluminated()
+{
+}
