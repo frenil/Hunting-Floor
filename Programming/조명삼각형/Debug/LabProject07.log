@@ -1,0 +1,79 @@
+﻿  stdafx.cpp
+  Timer.cpp
+  Shader.cpp
+c:\users\hwihyun\desktop\17년도 2학기\전공 지도\hunting-floor\programming\조명삼각형\shader.cpp(425): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Scene.cpp
+  Player.cpp
+  Object.cpp
+  Mesh.cpp
+  LabProject07.cpp
+  GameFramework.cpp
+  FbxLoad.cpp
+  Camera.cpp
+  코드를 생성하고 있습니다...
+c:\users\hwihyun\desktop\17년도 2학기\전공 지도\hunting-floor\programming\조명삼각형\mesh.cpp(608): warning C4700: 초기화되지 않은 'ver' 지역 변수를 사용했습니다.
+Shader.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Mesh.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "void __cdecl fbxsdk::_FbxAssert(char const *,char const *,unsigned int,bool,char const *,...)" (?_FbxAssert@fbxsdk@@YAXPBD0I_N0ZZ) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2019: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호(참조 위치: "public: class fbxsdk::FbxPair<class fbxsdk::FbxRedBlackTree<class fbxsdk::FbxMap<class fbxsdk::FbxString,class fbxsdk::FbxObject *,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::KeyValuePair,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::RecordType *,bool> __thiscall fbxsdk::FbxRedBlackTree<class fbxsdk::FbxMap<class fbxsdk::FbxString,class fbxsdk::FbxObject *,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::KeyValuePair,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::Insert(class fbxsdk::FbxMap<class fbxsdk::FbxString,class fbxsdk::FbxObject *,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::KeyValuePair const &)" (?Insert@?$FbxRedBlackTree@VKeyValuePair@?$FbxMap@VFbxString@fbxsdk@@PAVFbxObject@2@UFbxStringCompare@2@VFbxBaseAllocator@2@@fbxsdk@@UFbxStringCompare@3@VFbxBaseAllocator@3@@fbxsdk@@QAE?AV?$FbxPair@PAVRecordType@?$FbxRedBlackTree@VKeyValuePair@?$FbxMap@VFbxString@fbxsdk@@PAVFbxObject@2@UFbxStringCompare@2@VFbxBaseAllocator@2@@fbxsdk@@UFbxStringCompare@3@VFbxBaseAllocator@3@@fbxsdk@@_N@2@ABVKeyValuePair@?$FbxMap@VFbxString@fbxsdk@@PAVFbxObject@2@UFbxStringCompare@2@VFbxBaseAllocator@2@@2@@Z) 함수)에서 확인하지 못했습니다.
+Mesh.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "void * __cdecl fbxsdk::FbxMalloc(unsigned int)" (?FbxMalloc@fbxsdk@@YAPAXI@Z) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Mesh.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "void __cdecl fbxsdk::FbxFree(void *)" (?FbxFree@fbxsdk@@YAXPAX@Z) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Mesh.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::FbxString(class fbxsdk::FbxString const &)" (??0FbxString@fbxsdk@@QAE@ABV01@@Z) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Mesh.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::~FbxString(void)" (??1FbxString@fbxsdk@@QAE@XZ) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2019: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호(참조 위치: "protected: void __thiscall fbxsdk::FbxRedBlackTree<class fbxsdk::FbxMap<class fbxsdk::FbxString,class fbxsdk::FbxObject *,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::KeyValuePair,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::RemoveNode(class fbxsdk::FbxRedBlackTree<class fbxsdk::FbxMap<class fbxsdk::FbxString,class fbxsdk::FbxObject *,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::KeyValuePair,struct fbxsdk::FbxStringCompare,class fbxsdk::FbxBaseAllocator>::RecordType *)" (?RemoveNode@?$FbxRedBlackTree@VKeyValuePair@?$FbxMap@VFbxString@fbxsdk@@PAVFbxObject@2@UFbxStringCompare@2@VFbxBaseAllocator@2@@fbxsdk@@UFbxStringCompare@3@VFbxBaseAllocator@3@@fbxsdk@@IAEXPAVRecordType@12@@Z) 함수)에서 확인하지 못했습니다.
+Mesh.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "public: __thiscall fbxsdk::FbxString::operator char const *(void)const " (??BFbxString@fbxsdk@@QBEPBDXZ) 외부 기호를 확인할 수 없습니다.
+Shader.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+Mesh.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+Object.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+Player.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+Scene.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+Camera.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+FbxLoad.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+GameFramework.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+LabProject07.obj : error LNK2001: "public: int __thiscall fbxsdk::FbxString::Compare(char const *)const " (?Compare@FbxString@fbxsdk@@QBEHPBD@Z) 외부 기호를 확인할 수 없습니다.
+C:\Program Files\Autodesk\FBX\FBX SDK\2018.1.1\lib\vs2015\x64\release\libfbxsdk.lib : warning LNK4272: 'x64' 라이브러리 컴퓨터 종류가 'X86' 대상 컴퓨터 종류와 충돌합니다.
+C:\Users\Hwihyun\Desktop\17년도 2학기\전공 지도\Hunting-Floor\Programming\조명삼각형\Debug\LabProject07.exe : fatal error LNK1120: 7개의 확인할 수 없는 외부 참조입니다.
