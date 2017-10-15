@@ -1,0 +1,17 @@
+﻿  stdafx.cpp
+  Timer.cpp
+  Shader.cpp
+c:\users\lys\documents\work\github\hunting-floor\programming\조명삼각형\shader.cpp(389): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\lys\documents\work\github\hunting-floor\programming\조명삼각형\shader.cpp(420): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Scene.cpp
+  Player.cpp
+  Object.cpp
+  Mesh.cpp
+c:\users\lys\documents\work\github\hunting-floor\programming\조명삼각형\mesh.cpp(611): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\lys\documents\work\github\hunting-floor\programming\조명삼각형\mesh.cpp(616): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  LabProject07.cpp
+  GameFramework.cpp
+  FbxLoad.cpp
+  Camera.cpp
+  코드를 생성하고 있습니다...
+LINK : fatal error LNK1104: 'libfbxsdk.lib' 파일을 열 수 없습니다.
