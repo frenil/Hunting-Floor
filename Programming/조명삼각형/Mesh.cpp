@@ -396,7 +396,7 @@ CCubeMeshIlluminated::CCubeMeshIlluminated(ID3D12Device *pd3dDevice, ID3D12Graph
 	CalculateVertexNormals(pxmf3Normals, pxmf3Positions, m_nVertices, pnIndices, m_nIndices);
 
 	CIlluminatedVertex pVertices[8];
-	for (int i = 0; i < 8; i++) pVertices[i] = CIlluminatedVertex(pxmf3Positions[i], pxmf3Normals[i]);
+	for (int i = 0; i < 8; i++) pVertices[i] = CIlluminatedVertex(pxmf3Positions[i], XMFLOAT2(0,0),pxmf3Normals[i]);
 
 	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pd3dVertexUploadBuffer);
 
@@ -436,14 +436,14 @@ CSphereMeshIlluminated::CSphereMeshIlluminated(ID3D12Device *pd3dDevice, ID3D12G
 		{
 			theta_i = fDeltaTheta * i;
 			pxmf3Positions[k] = XMFLOAT3(fRadius*sinf(phi_j)*cosf(theta_i), fRadius*cosf(phi_j), fRadius*sinf(phi_j)*sinf(theta_i));
-			pxmf3Normals[k] = Vector3::Normalize(pxmf3Positions[k]); k++;
+			pxmf3Normals[k] = Vector3::Normalize(pxmf3Positions[k]);k++;
 		}
 	}
 	pxmf3Positions[k] = XMFLOAT3(0.0f, -fRadius, 0.0f);
 	pxmf3Normals[k] = Vector3::Normalize(pxmf3Positions[k]); k++;
 
 	CIlluminatedVertex *pVertices = new CIlluminatedVertex[m_nVertices];
-	for (UINT i = 0; i < m_nVertices; i++) pVertices[i] = CIlluminatedVertex(pxmf3Positions[i], pxmf3Normals[i]);
+	for (UINT i = 0; i < m_nVertices; i++) pVertices[i] = CIlluminatedVertex(pxmf3Positions[i], XMFLOAT2(0,0),pxmf3Normals[i]);
 	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pd3dVertexUploadBuffer);
 
 	m_d3dVertexBufferView.BufferLocation = m_pd3dVertexBuffer->GetGPUVirtualAddress();
@@ -601,39 +601,49 @@ CTriangleMeshIlluminated::~CTriangleMeshIlluminated()
 {
 }
 
-CFBXMeshIlluminated::CFBXMeshIlluminated(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, UINT nSlices, UINT nStacks) : CMeshIlluminated(pd3dDevice, pd3dCommandList)
+CFBXMeshIlluminated::CFBXMeshIlluminated(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList) : CMeshIlluminated(pd3dDevice, pd3dCommandList)
 {
 	FbxLoad fbx;
 	vector<XMFLOAT3> ver;
+	vector<XMFLOAT3> normal;
+	vector<XMFLOAT2> uv;
 
-	fbx.LoadFBX(&ver);
 
-	m_nVertices = ver.size()*3;
-	m_nStride = sizeof(CDiffusedVertex);
-	m_nOffset = 0;
-	m_nSlot = 0;
+	fbx.LoadFBX(&ver,&normal,&uv);
+
+	m_nStride = sizeof(CIlluminatedVertex);
 	m_d3dPrimitiveTopology = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	int n = ver.size() * 3;
-	CDiffusedVertex *pVertices;
-	pVertices = (CDiffusedVertex *)malloc(n * sizeof(CDiffusedVertex));
+
+	
+	m_nVertices = ver.size();
+	XMFLOAT3 *pxmf3Positions = new XMFLOAT3[m_nVertices];
+	XMFLOAT3 *pxmf3Normals = new XMFLOAT3[m_nVertices];
+	XMFLOAT2 *pxmf3UV = new XMFLOAT2[m_nVertices];
+
 	int i = 0;
 	for (auto it = ver.begin(); it != ver.end(); ++it) {
-
-	pVertices[i++] = CDiffusedVertex(XMFLOAT3(it->x, it->y, it->z), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)); //XMFLOAT4(Colors::Red)
-	
+		pxmf3Positions[i] = XMFLOAT3(it->x, it->y, it->z); i++;
+	}
+	i = 0;
+	for (auto it = normal.begin(); it != normal.end(); ++it) {
+		pxmf3Normals[i] = XMFLOAT3(it->x, it->y, it->z); i++;
+	}
+	i = 0;
+	for (auto it = uv.begin(); it != uv.end(); ++it) {
+		pxmf3UV[i] = XMFLOAT2(it->x, it->y); i++;
 	}
 
-																									 //#define _WITH_UPLOAD_BUFFER
-
-#ifdef _WITH_UPLOAD_BUFFER
-	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
-#else
+	CIlluminatedVertex *pVertices = new CIlluminatedVertex[m_nVertices];
+	for (UINT i = 0; i < m_nVertices; i++) pVertices[i] = CIlluminatedVertex(pxmf3Positions[i], pxmf3UV[i], pxmf3Normals[i]);
 	m_pd3dVertexBuffer = CreateBufferResource(pd3dDevice, pd3dCommandList, pVertices, m_nStride * m_nVertices, D3D12_HEAP_TYPE_DEFAULT, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, &m_pd3dVertexUploadBuffer);
-#endif
 
 	m_d3dVertexBufferView.BufferLocation = m_pd3dVertexBuffer->GetGPUVirtualAddress();
 	m_d3dVertexBufferView.StrideInBytes = m_nStride;
 	m_d3dVertexBufferView.SizeInBytes = m_nStride * m_nVertices;
+
+	if (pxmf3Positions) delete[] pxmf3Positions;
+	if (pxmf3Normals) delete[] pxmf3Normals;
+
 }
 
 CFBXMeshIlluminated::~CFBXMeshIlluminated()

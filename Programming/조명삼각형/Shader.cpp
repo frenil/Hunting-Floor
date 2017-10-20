@@ -386,11 +386,10 @@ void CObjectsShader::ReleaseShaderVariables()
 }
 void CObjectsShader::BuildTriObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
 {
-	CFBXMeshIlluminated *pTriangle = new CFBXMeshIlluminated(pd3dDevice, pd3dCommandList, 12.0f, 12.0f);
+	CFBXMeshIlluminated *pTriangle = new CFBXMeshIlluminated(pd3dDevice, pd3dCommandList);
 
-	int xObjects = 0, yObjects = 0, zObjects = 0, i = 0;
-
-	m_nObjects = (xObjects * 2 + 1) * (yObjects * 2 + 1) * (zObjects * 2 + 1);
+	
+	m_nObjects = 1;
 
 	m_ppObjects = new CGameObject*[m_nObjects];
 
@@ -403,14 +402,14 @@ void CObjectsShader::BuildTriObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCom
 	pRotatingObject = new CRotatingObject();
 	XMFLOAT3 mxrotx(1, 0, 0);
 	XMFLOAT3 mxrotz(0,0,1);
-	pRotatingObject->SetMaterial(i % MAX_MATERIALS);
+	pRotatingObject->SetMaterial(1 % MAX_MATERIALS);
 	pRotatingObject->SetMesh(pTriangle);
 	pRotatingObject->SetPosition(fxPitch, fyPitch, fzPitch);
-	pRotatingObject->SetRotationAxis(XMFLOAT3(0.0f, 1.0f, 0.0f));
-	pRotatingObject->SetRotationSpeed(10.0f * (i % 10));
+	pRotatingObject->SetRotationAxis(XMFLOAT3(0.0f, 0.0f, 0.0f));
+	pRotatingObject->SetRotationSpeed(10.0f * (1 % 10));
 	pRotatingObject->Rotate(&mxrotx, -90.f);
 	pRotatingObject->Rotate(&mxrotz,180.f);
-	m_ppObjects[i++] = pRotatingObject;
+	m_ppObjects[0] = pRotatingObject;
 	
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }

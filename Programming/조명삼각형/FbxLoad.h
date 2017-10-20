@@ -11,6 +11,6 @@ public:
 	FbxLoad();
 	~FbxLoad();
 
-	HRESULT LoadFBX(vector<XMFLOAT3>* pOutVertexvector);
+	HRESULT LoadFBX(vector<XMFLOAT3>* pOutVertexvector, vector<XMFLOAT3>* pOutNormal, vector<XMFLOAT2>* pOutUV);
 };
 

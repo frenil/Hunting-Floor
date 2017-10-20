@@ -12,7 +12,7 @@ FbxLoad::FbxLoad()
 FbxLoad::~FbxLoad()
 {
 }
-HRESULT FbxLoad::LoadFBX(vector<XMFLOAT3> *pOutVertexVector)
+HRESULT FbxLoad::LoadFBX(vector<XMFLOAT3> *pOutVertexVector, vector<XMFLOAT3>* pOutNormal, vector<XMFLOAT2>* pOutUV)
 {
 
 	if (g_pFbxSdkManager == nullptr)
@@ -46,13 +46,14 @@ HRESULT FbxLoad::LoadFBX(vector<XMFLOAT3> *pOutVertexVector)
 				continue;
 
 			FbxNodeAttribute::EType AttributeType = pFbxChildNode->GetNodeAttribute()->GetAttributeType();
-
 			if (AttributeType != FbxNodeAttribute::eMesh)
 				continue;
 
 			FbxMesh* pMesh = (FbxMesh*)pFbxChildNode->GetNodeAttribute();
 
+			fbxsdk::FbxLayerElementUV *pFbxLayerElementUV = pMesh->GetLayer(0)->GetUVs();
 			FbxVector4* pVertices = pMesh->GetControlPoints();
+			FbxVector4 normal;
 			for (int j = 0; j < pMesh->GetPolygonCount(); j++)
 			{
 				int iNumVertices = pMesh->GetPolygonSize(j);
@@ -60,13 +61,20 @@ HRESULT FbxLoad::LoadFBX(vector<XMFLOAT3> *pOutVertexVector)
 
 				for (int k = 0; k < iNumVertices; k++) {
 					int iControlPointIndex = pMesh->GetPolygonVertex(j, k);
-
+					pMesh->GetPolygonVertexNormal(j, k, normal);
+					
 					XMFLOAT3 vertex = XMFLOAT3(
-					  (float)pVertices[iControlPointIndex].mData[0]	*30
-					, (float)pVertices[iControlPointIndex].mData[1]	*30
-					, (float)pVertices[iControlPointIndex].mData[2]	*30
+						(float)pVertices[iControlPointIndex].mData[0] * 30
+						, (float)pVertices[iControlPointIndex].mData[1] * 30
+						, (float)pVertices[iControlPointIndex].mData[2] * 30
 					);
+					XMFLOAT3 nor = XMFLOAT3((float)normal.mData[0], (float)normal.mData[1], (float)normal.mData[2]);
+					fbxsdk::FbxVector2 fbxUv = pFbxLayerElementUV->GetDirectArray().GetAt(iControlPointIndex);
+					XMFLOAT2 uv = XMFLOAT2((float)fbxUv.mData[0], (float)fbxUv.mData[1]);
+
 					pOutVertexVector->push_back(vertex);
+					pOutNormal->push_back(nor);
+					pOutUV->push_back(uv);
 				}
 			}
 
