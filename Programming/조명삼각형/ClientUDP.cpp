@@ -49,7 +49,7 @@ void ClientUDP::UDPsend()
 	ZeroMemory(&serveraddr, sizeof(serveraddr));
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_addr.s_addr = inet_addr(SERVERIP);
-	serveraddr.sin_port = htons(SERVERPORT);
+	serveraddr.sin_port = htons(SENDPORT);
 
 	retval = sendto(sock, (char*)&m_pos, sizeof(m_pos), 0, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
 	if (retval == SOCKET_ERROR)
@@ -73,7 +73,7 @@ void ClientUDP::UDPReceive()
 	ZeroMemory(&localaddr, sizeof(localaddr));
 	localaddr.sin_family = AF_INET;
 	localaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-	localaddr.sin_port = htons(SERVERPORT);
+	localaddr.sin_port = htons(RECEIVEPORT);
 	retval = bind(sock, (SOCKADDR *)&localaddr, sizeof(localaddr));
 	if (retval == SOCKET_ERROR) err_quit("bind()");
 

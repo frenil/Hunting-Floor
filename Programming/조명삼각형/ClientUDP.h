@@ -1,7 +1,8 @@
 #pragma once
 #include "Player.h"
 #define SERVERIP "127.0.0.1"
-#define SERVERPORT 9000
+#define SENDPORT 9000
+#define RECEIVEPORT 9050
 #define CLIENT_ID 0
 
 struct Position {
