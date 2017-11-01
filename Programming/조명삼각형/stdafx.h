@@ -9,6 +9,7 @@
 // Windows 헤더 파일:
 #include <windows.h>
 
+
 // C의 런타임 헤더 파일입니다.
 #include <iostream>
 #include <stdlib.h>
@@ -16,6 +17,9 @@
 #include <memory.h>
 #include <tchar.h>
 #include <math.h>
+#include <WinSock2.h>
+#pragma comment(lib, "Ws2_32.lib")
+#include <stdio.h>
 
 #include <string>
 #include <wrl.h>

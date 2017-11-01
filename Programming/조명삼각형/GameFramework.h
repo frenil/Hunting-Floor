@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include "Player.h"
 #include "Scene.h"
+#include "ClientUDP.h"
 
 class CGameFramework
 {
@@ -85,5 +86,6 @@ private:
 	POINT						m_ptOldCursorPos;
 
 	_TCHAR						m_pszFrameRate[50];
+	ClientUDP					m_udp;
 };
 
