@@ -1,8 +1,8 @@
-﻿  Mesh.cpp
-Mesh.cpp(618): warning C4267: '=': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Shader.cpp
+Shader.cpp(419): warning C4244: '인수': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-  42 of 499 functions ( 8.4%) were compiled, the rest were copied from previous compilation.
+  35 of 520 functions ( 6.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  LabProject07.vcxproj -> D:\Hunting Floor\Hunting-Floor\Programming\조명삼각형\x64\Release\LabProject07.exe
+  LabProject07.vcxproj -> D:\Hunting-Floor\Programming\조명삼각형\x64\Release\LabProject07.exe

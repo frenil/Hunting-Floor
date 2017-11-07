@@ -84,7 +84,6 @@ void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *p
 	m_pShaders[1].CreateShader(pd3dDevice, m_pd3dGraphicsRootSignature);
 	m_pShaders[1].BuildSphereObjects(pd3dDevice, pd3dCommandList);
 
-
 	BuildLightsAndMaterials();
 
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);

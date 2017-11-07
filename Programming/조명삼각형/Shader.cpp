@@ -407,8 +407,8 @@ void CObjectsShader::BuildTriObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCom
 	pRotatingObject->SetPosition(fxPitch, fyPitch, fzPitch);
 	pRotatingObject->SetRotationAxis(XMFLOAT3(0.0f, 0.0f, 0.0f));
 	pRotatingObject->SetRotationSpeed(10.0f * (1 % 10));
-	pRotatingObject->Rotate(&mxrotx, -90.f);
-	pRotatingObject->Rotate(&mxrotz,180.f);
+	pRotatingObject->Rotate(&mxrotx, 90.f);
+	//pRotatingObject->Rotate(&mxrotz,180.f);
 	m_ppObjects[0] = pRotatingObject;
 	
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);

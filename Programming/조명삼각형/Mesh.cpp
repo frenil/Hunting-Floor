@@ -622,11 +622,16 @@ CFBXMeshIlluminated::CFBXMeshIlluminated(ID3D12Device * pd3dDevice, ID3D12Graphi
 
 	int i = 0;
 	for (auto it = ver.begin(); it != ver.end(); ++it) {
-		pxmf3Positions[i] = XMFLOAT3(it->x, it->y, it->z); i++;
+		pxmf3Positions[i] = XMFLOAT3(it->x,
+			(it->y+30)*(cos(180 * (3.14159f/180)) - sin(180 * (3.14159f/180))),
+			(it->z-50)*(cos(180 * (3.14159f/180)) + sin(180 * (3.14159f/180)))); i++;
 	}
 	i = 0;
 	for (auto it = normal.begin(); it != normal.end(); ++it) {
-		pxmf3Normals[i] = XMFLOAT3(it->x, it->y, it->z); i++;
+		pxmf3Normals[i] = XMFLOAT3(it->x, 
+			it->y*(cos(180 * (3.14159f / 180)) - sin(180 * (3.14159f / 180))),
+			it->z*(cos(180 * (3.14159f / 180)) + sin(180 * (3.14159f / 180)))
+		); i++;
 	}
 	i = 0;
 	for (auto it = uv.begin(); it != uv.end(); ++it) {

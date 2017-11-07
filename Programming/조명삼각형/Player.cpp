@@ -236,10 +236,9 @@ CAirplanePlayer::CAirplanePlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommand
 {
 	CFBXMeshIlluminated *pAirplaneMesh = new CFBXMeshIlluminated(pd3dDevice, pd3dCommandList);
 	SetMesh(pAirplaneMesh);
-
 	m_pCamera = ChangeCamera(SPACESHIP_CAMERA/*THIRD_PERSON_CAMERA*/, 0.0f);
 	SetPosition(XMFLOAT3(0.0f, 0.0f, 0.0f));
-
+	
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);
 
 	CPlayerShader *pShader = new CPlayerShader();
