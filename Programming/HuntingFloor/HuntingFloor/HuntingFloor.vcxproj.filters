@@ -16,11 +16,11 @@
     <Filter Include="GameFramework">
       <UniqueIdentifier>{bec7fabe-0092-4de5-b3f7-07bdcf648007}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameFramework\IndependentDeviceRes">
-      <UniqueIdentifier>{16da6d37-d3a9-4478-8fcc-c57c5fec4595}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PCH">
       <UniqueIdentifier>{859070c8-65a8-4824-b223-d358cdab4b91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndependentDeviceRes">
+      <UniqueIdentifier>{16da6d37-d3a9-4478-8fcc-c57c5fec4595}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,34 +30,34 @@
     <ClInclude Include="HuntingFloor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="GameFramework.h">
-      <Filter>GameFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="IndRes.h">
-      <Filter>GameFramework\IndependentDeviceRes</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>PCH</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="PCH\stdafx.h">
+      <Filter>PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFramework\GameFramework.h">
+      <Filter>GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="IndependentDeviceRes\IndRes.h">
+      <Filter>IndependentDeviceRes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HuntingFloor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GameFramework.cpp">
+    <ClCompile Include="PCH\stdafx.cpp">
+      <Filter>PCH</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFramework\GameFramework.cpp">
       <Filter>GameFramework</Filter>
     </ClCompile>
-    <ClCompile Include="IndRes.cpp">
-      <Filter>GameFramework\IndependentDeviceRes</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>PCH</Filter>
+    <ClCompile Include="IndependentDeviceRes\IndRes.cpp">
+      <Filter>IndependentDeviceRes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

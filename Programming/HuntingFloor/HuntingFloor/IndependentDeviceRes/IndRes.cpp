@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../PCH/stdafx.h"
 #include "IndRes.h"
 
 CIndRes::CIndRes()

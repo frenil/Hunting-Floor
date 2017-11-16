@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "targetver.h"
+#include "../targetver.h"
 
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용은 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일:
@@ -17,6 +17,14 @@
 #include <memory.h>
 #include <tchar.h>
 
+// C 런타임 헤더 파일
+#include <iostream>
+using namespace std;
+
+// 파일 시스템 전체를 관리
+// C++ 17 표준
+#include <filesystem>
+using namespace std::experimental::filesystem;
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include <string> 
