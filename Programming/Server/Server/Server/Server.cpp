@@ -2,23 +2,15 @@
 #include <winsock2.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <DirectXMath.h>
 
-#define RECEIVEPORT 9000
-#define SENDPORT 9050
+#define PORT 9000
 #define BUFSIZE   512
-#define REMOTEIP "255.255.255.255"
+#define REMOTEIP "127.0.0.1"
 
-struct Position {
-	int id;
-	float position[3];
-	float right[3];
-	float up[3];
-	float look[3];
-};
+DirectX::XMFLOAT4X4 Rpos, Spos;
 
-Position Rpos, Spos;
-HANDLE hReadEvent;
-HANDLE hWriteEvent;
+
 
 // 소켓 함수 오류 출력 후 종료
 void err_quit(char *msg)
@@ -47,38 +39,47 @@ void err_display(char *msg)
 	LocalFree(lpMsgBuf);
 }
 
-DWORD WINAPI UDPSend(LPVOID arg)
+int recvn(SOCKET s, char *buf, int len, int flags)
+{
+	int received;
+	char *ptr = buf;
+	int left = len;
+
+	while (left > 0) {
+		received = recv(s, ptr, left, flags);
+		if (received == SOCKET_ERROR)
+			return SOCKET_ERROR;
+		else if (received == 0)
+			break;
+		left -= received;
+		ptr += received;
+	}
+
+	return (len - left);
+}
+
+DWORD WINAPI Receive(LPVOID arg)
 {
 	int retval;
-	SOCKET sock = socket(AF_INET, SOCK_DGRAM, 0);
-	if (sock == INVALID_SOCKET) err_quit("socket()");
+	SOCKET sock = (SOCKET)arg;
+	SOCKADDR_IN clientaddr;
+	int addrlen;
 
-	// 브로드캐스팅 활성화
-	BOOL bEnable = TRUE;
-	retval = setsockopt(sock, SOL_SOCKET, SO_BROADCAST,
-		(char *)&bEnable, sizeof(bEnable));
-	if (retval == SOCKET_ERROR) err_quit("setsockopt()");
+	addrlen = sizeof(clientaddr);
+	getpeername(sock, (SOCKADDR *)&clientaddr, &addrlen);
 
-	// 소켓 주소 구조체 초기화
-	SOCKADDR_IN remoteaddr;
-	ZeroMemory(&remoteaddr, sizeof(remoteaddr));
-	remoteaddr.sin_family = AF_INET;
-	remoteaddr.sin_addr.s_addr = inet_addr(REMOTEIP);
-	remoteaddr.sin_port = htons(SENDPORT);
-
-	// 브로드캐스트 데이터 보내기
-	while (1) {
-		retval = WaitForSingleObject(hWriteEvent, INFINITE);
-		if (retval != WAIT_OBJECT_0) break;
-		// 데이터 보내기
-		retval = sendto(sock, (char*)&Spos, sizeof(Spos), 0,
-			(SOCKADDR *)&remoteaddr, sizeof(remoteaddr));
+	while (1) {		
+		retval = recvn(sock, (char*)&Rpos, sizeof(Rpos), 0);
 		if (retval == SOCKET_ERROR) {
-			err_display("sendto()");
+			err_display("recvn()");
 			continue;
 		}
-		printf("[UDP] %d바이트를 보냈습니다.\n", retval);
-		SetEvent(hReadEvent);
+
+		printf("%f %f %f %f\n", Rpos._41, Rpos._42, Rpos._43, Rpos._44);
+
+
+		memcpy(&Spos, &Rpos, sizeof(Rpos));
+
 	}
 
 	// closesocket()
@@ -90,53 +91,55 @@ DWORD WINAPI UDPSend(LPVOID arg)
 int main(int argc, char *argv[])
 {
 	int retval;
-	HANDLE hSend;
-	hReadEvent = CreateEvent(NULL, FALSE, TRUE, NULL);
-	if (hReadEvent == NULL) return 1;
-	hWriteEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
-	if (hWriteEvent == NULL) return 1;
+	HANDLE hReceive;
+
 
 	// 윈속 초기화
 	WSADATA wsa;
 	if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
 		return 1;
 
-	SOCKADDR_IN peeraddr;
+	SOCKET client_sock;
+	SOCKADDR_IN clientaddr;
 	int addrlen;
 
-	SOCKET sock = socket(AF_INET, SOCK_DGRAM, 0);
-	if (sock == INVALID_SOCKET) err_quit("socket()");
+	SOCKET listen_sock = socket(AF_INET, SOCK_STREAM, 0);
+	if (listen_sock == INVALID_SOCKET) err_quit("socket()");
 
-	SOCKADDR_IN localaddr;
-	ZeroMemory(&localaddr, sizeof(localaddr));
-	localaddr.sin_family = AF_INET;
-	localaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-	localaddr.sin_port = htons(RECEIVEPORT);
-	retval = bind(sock, (SOCKADDR *)&localaddr, sizeof(localaddr));
+	SOCKADDR_IN serveraddr;
+	ZeroMemory(&serveraddr, sizeof(serveraddr));
+	serveraddr.sin_family = AF_INET;
+	serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);
+	serveraddr.sin_port = htons(PORT);
+	retval = bind(listen_sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
 	if (retval == SOCKET_ERROR) err_quit("bind()");
 
-	hSend = CreateThread(NULL, 0, UDPSend, 0, 0, NULL);
+	retval = listen(listen_sock, SOMAXCONN);
+	if (retval == SOCKET_ERROR) err_quit("listen()");
+	
+	addrlen = sizeof(clientaddr);
+
 	while (1) {
-		// 데이터 받기
-		addrlen = sizeof(peeraddr);
-		retval = recvfrom(sock, (char*)&Rpos, sizeof(Rpos), 0,
-			(SOCKADDR *)&peeraddr, &addrlen);
-		if (retval == SOCKET_ERROR) {
-			err_display("recvfrom()");
-			continue;
+		client_sock = accept(listen_sock, (SOCKADDR *)&clientaddr, &addrlen);
+		if(client_sock == INVALID_SOCKET)
+		{
+			err_display("accept()");
+			break;
 		}
-		printf("ID : %d/x = %f/y = %f/z = %f/look x = %f/y = %f/z = %f\n", Rpos.id, Rpos.position[0], Rpos.position[1], Rpos.position[2], Rpos.look[0], Rpos.look[1], Rpos.look[2]);
-		retval = WaitForSingleObject(hReadEvent, INFINITE);
-		if (retval != WAIT_OBJECT_0) break;
-		memcpy(&Spos, &Rpos, sizeof(Rpos));
-		SetEvent(hWriteEvent);
+		
+		hReceive = CreateThread(NULL, 0, Receive, (LPVOID)client_sock, 0, NULL);
+		if (hReceive == NULL) closesocket(client_sock);
+		else CloseHandle(hReceive);
+
+		Spos._41 = Spos._41 + 5;
+		Spos._42 = Spos._42 + 5;
+
+		retval = send(client_sock, (char*)&Spos, sizeof(Spos), 0);
+
 	}
 
 	// closesocket()
-	closesocket(sock);
-	CloseHandle(hSend);
-	CloseHandle(hWriteEvent);
-	CloseHandle(hReadEvent);
+	closesocket(listen_sock);
 
 	// 윈속 종료
 	WSACleanup();
